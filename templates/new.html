@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html>
+   <head>
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/new.css') }}">
+      <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+      <title>Agenda Flask</title>
+   </head>
+   
    <body>
       <h3>
          <a href = "{{ url_for('show_all') }}">Agenda</a></h3>
@@ -14,16 +20,16 @@
       
       <form action = "{{ request.path }}" method = "post">
          <label for = "nome">Nome</label><br>
-         <input type = "text" name = "nome" placeholder = "Nome" /><br>
+         <input type = "text" name = "nome" placeholder = "Nome" /><br><br>
 
          <label for = "email">Email</label><br>
-         <input type = "text" name = "email" placeholder = "Email" /><br>
+         <input type = "text" name = "email" placeholder = "Email" /><br><br>
 
          <label for = "telefone">Telefone</label><br>
-         <input type = "text" name = "telefone" placeholder = "Telefone"><br>
+         <input type = "text" name = "telefone" placeholder = "Telefone"><br><br>
 
          <label for = "data_nasc">Data Nascimento</label><br>
-         <input type = "text" name = "data_nasc" placeholder = "Data nascimento" /><br>
+         <input type = "text" name = "data_nasc" placeholder = "Data nascimento" /><br><br>
          
          <input type = "submit" value = "Inserir" />
       </form>

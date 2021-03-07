@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang = "en">
-   <head></head>
+   <head>
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/show_all.css') }}">
+      <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+      <title>Agenda Flask</title>
+   </head>
    <body>
-      <h3>
-         <a href = "{{ url_for('show_all') }}">Agenda</a></h3>
-      
+      <h3>AGENDA</h3>      
       <hr/>
       {%- for message in get_flashed_messages() %}
          {{ message }}
       {%- endfor %}
 		
-      <h3>Pessoas (<a href = "{{ url_for('new') }}">Adicionar pessoa</a>)</h3>
+      <h3>Pessoas</h3>
       
       <table>
          <thead>
@@ -41,5 +43,11 @@
             {% endfor %}
          </tbody>
       </table>
+
+      <hr/>
+      <div class="add_pessoa">
+          (<a href = "{{ url_for('new') }}">Adicionar pessoa</a>)
+      </div>
+    
    </body>
 </html>

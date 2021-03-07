@@ -49,14 +49,14 @@ def excluir():
         # flash(f'user: {user}')
         db.session.delete(user)
         db.session.commit()
-        flash('Pessoa excluida com sucesso')
+        flash('Pessoa excluída com sucesso')
     return redirect(url_for('show_all'))    
 
 @app.route('/new', methods = ['GET', 'POST'])
 def new():
    if request.method == 'POST':
       if not request.form['nome'] or not request.form['email'] or not request.form['telefone']:
-         flash('Please enter all the fields', 'error')
+         flash('Campos de preenchimento obrigatório', 'error')
       else:
          pessoa = pessoas(request.form['nome'], request.form['email'], request.form['telefone'], request.form['data_nasc'])
          
