@@ -14,12 +14,10 @@ data nascimento (texto).
 Opcional: Fazer a exclusão de um registro também
 '''
 
-from flask import Flask, request, flash, url_for, redirect, render_template
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pessoa.sqlite3'
-app.secret_key = "alquimia"
 
 db = SQLAlchemy(app)
 class pessoas(db.Model):
@@ -37,25 +35,4 @@ class pessoas(db.Model):
 
 @app.route('/')
 def show_all():
-   return render_template('show_all.html', pessoas = pessoas.query.all())
-
-@app.route('/new', methods = ['GET', 'POST'])
-def new():
-   if request.method == 'POST':
-      if not request.form['nome'] or not request.form['email'] or not request.form['telefone']:
-         flash('Please enter all the fields', 'error')
-      else:
-         student = pessoas(request.form['nome'], request.form['email'],
-            request.form['telefone'], request.form['data_nasc'])
-         
-         db.session.add(student)
-         db.session.commit()
-         flash('Pessoa adicionada com sucesso')
-         return redirect(url_for('show_all'))
-   return render_template('new.html')
-
-
-if __name__ == '__main__':
-    db.create_all()
-    app.run(debug = True)
-
+   return render_template('show_all.html', pessoas = pessoas.query.all() )
