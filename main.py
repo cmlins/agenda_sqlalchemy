@@ -42,13 +42,14 @@ def show_all():
 @app.route('/excluir', methods = ['GET', 'POST'])
 def excluir():
     if request.method == 'POST':
-        flash(request.method)
-        id_pessoa = request.form['pessoa_id']
-        flash(id_pessoa)
-        flash(request.values)
-    else:
-        print(f'else: {request.methods}')     
-        return redirect(url_for('show_all'))
+        # flash(request.method)
+        pessoa = request.form['pessoa_id']
+        # flash(f'id: {pessoa}')
+        user = pessoas.query.get(pessoa)
+        # flash(f'user: {user}')
+        db.session.delete(user)
+        db.session.commit()
+        flash('Pessoa excluida com sucesso')
     return redirect(url_for('show_all'))    
 
 @app.route('/new', methods = ['GET', 'POST'])
