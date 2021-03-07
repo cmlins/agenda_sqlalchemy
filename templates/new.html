@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
    <body>
-      <h3>Agenda</h3>
+      <h3>
+         <a href = "{{ url_for('show_all') }}">Agenda</a></h3>
+      
       <hr/>
       
       {%- for category, message in get_flashed_messages(with_categories = true) %}

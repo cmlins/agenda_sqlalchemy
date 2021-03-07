@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang = "en">
+   <head></head>
+   <body>
+      <h3>
+         <a href = "{{ url_for('show_all') }}">Agenda</a></h3>
+      
+      <hr/>
+      {%- for message in get_flashed_messages() %}
+         {{ message }}
+      {%- endfor %}
+		
+      <h3>Pessoas (<a href = "{{ url_for('new') }}">Adicionar pessoa</a>)</h3>
+      
+      <table>
+         <thead>
+            <tr>
+               <th>Nome</th>
+               <th>Email</th>
+               <th>Telefone</th>
+               <th>Data de nascimento</th>   
+               <th>Excluir</th>            
+            </tr>
+         </thead>
+
+         <tbody>
+            {% for pessoa in pessoas %}
+               <tr>
+                  <form action="{{ url_for('excluir') }}" method="post">                      
+                    <td>{{ pessoa.nome }}</td>
+                    <td>{{ pessoa.email }}</td>
+                    <td>{{ pessoa.telefone }}</td>
+                    <td>{{ pessoa.data_nasc }}</td>
+                    
+                    <td><input type="submit" value="Excluir"></td>
+                    <td><input type="hidden" name="pessoa_id" value="{{ pessoa.pessoa_id }}"/>{{ pessoa.id }}</td>
+                  </form>
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+   </body>
+</html>
